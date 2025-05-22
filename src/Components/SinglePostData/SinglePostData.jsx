@@ -17,7 +17,7 @@ const SinglePostData = ({ singlePostData }) => {
         // })
     }
     return (
-        <div className="card shadow-2xl my-5  bg-base-100 w-96 border-2">
+        <div className="card shadow-2xl my-5  bg-base-100 w-64 lg:w-96 border-2">
             <div className="card-body">
                 <h2 className="card-title text-2xl">{title}</h2>
                 <div className='flex gap-3'>

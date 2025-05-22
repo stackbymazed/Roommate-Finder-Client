@@ -36,7 +36,7 @@ const LogIn = () => {
             .then((result) => {
                 const user = result.user;
                 setUser(user)
-                alert("google SIgn log in successfully")
+                // alert("google SIgn log in successfully")
                 navigate(`${location.state ? location?.state : "/" }`)
             }).catch((error) => {
                 const errorMessage = error.message;

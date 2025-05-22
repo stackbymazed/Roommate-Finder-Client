@@ -27,9 +27,9 @@ const SignUp = () => {
                     .then(() => {
                         setUser({ ...user, displayName: name, photoURL: photo })
                         alert("gmail password signin successfully")
-                        Navigate("/login")
+                        // Navigate("/login")
                         from.reset()
-                        // navigate(`${location.state ? location.state : "/login"}`)
+                        Navigate(`${location.state ? location.state : "/login"}`)
                     }).catch((error) => {
                         // An error occurred
                         // ...
@@ -50,9 +50,9 @@ const SignUp = () => {
                 const user = result.user;
                 setUser(user)
 
-                alert("google SIgn Up successfully")
-                // navigate(`${location.state ? location.state : '/login'}`)
-                Navigate("/login")
+                // alert("google SIgn Up successfully")
+                Navigate(`${location.state ? location.state : '/'}`)
+                // Navigate("/")
             }).catch((error) => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
