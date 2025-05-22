@@ -41,8 +41,8 @@ const FindRoommate = () => {
 
     }
     return (
-        <div className='p-16 bg-pink-100'>
-            <div className='text-center p-8'>
+        <div className='p-16 bg-pink-50 dark:text-black my-10 rounded-4xl'>
+            <div className='text-center px-8'>
                 <h1 className='text-3xl'>Add To Find RoomMate</h1>
             </div>
             <form onSubmit={handleAddData}>
@@ -99,8 +99,8 @@ const FindRoommate = () => {
                     <input type="text" name='photo' className="border bg-white pl-5 border-gray-300 h-8" placeholder="Enter Contact Info " />
                 </fieldset>
                 <fieldset className="fieldset  rounded-box p-4">
-                    <legend className="fieldset-legend font-bold">Your bio</legend>
-                    <textarea className="textarea h-24 w-full" name='bio' placeholder="Enter the Description" ></textarea>
+                    <legend className="fieldset-legend font-bold dark:text-black">Your bio</legend>
+                    <textarea className="textarea h-24 w-full dark:text-white" name='bio' placeholder="Enter the Description" ></textarea>
                 </fieldset>
                 <input type="submit" className='btn w-full ' value="Add" />
             </form>

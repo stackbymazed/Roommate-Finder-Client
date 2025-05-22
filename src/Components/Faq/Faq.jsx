@@ -2,12 +2,12 @@ import React from 'react';
 
 const Faq = () => {
     return (
-        <div className='bg-gray-100 pt-5 rounded-2xl pb-20'>
+        <div className='bg-gray-50 pt-5 rounded-2xl pb-20'>
             <h1 className='text-2xl font-semibold my-4 justify-center flex items-center'>
                 Frequently Asked Questions
             </h1>
 
-            <div className="collapse collapse-arrow bg-base-100 border border-base-300">
+            <div className="collapse collapse-arrow bg-base-100 border border-base-300 dark:border-white">
                 <input type="radio" name="my-accordion-2" />
                 <div className="collapse-title font-semibold">
                     How do I find a compatible roommate?
@@ -17,7 +17,7 @@ const Faq = () => {
                 </div>
             </div>
 
-            <div className="collapse collapse-arrow bg-base-100 border border-base-300">
+            <div className="collapse collapse-arrow bg-base-100 border border-base-300 dark:border-white">
                 <input type="radio" name="my-accordion-2" />
                 <div className="collapse-title font-semibold">
                     Can I post my own room or apartment?
@@ -27,7 +27,7 @@ const Faq = () => {
                 </div>
             </div>
 
-            <div className="collapse collapse-arrow bg-base-100 border border-base-300">
+            <div className="collapse collapse-arrow bg-base-100 border border-base-300 dark:border-white">
                 <input type="radio" name="my-accordion-2" />
                 <div className="collapse-title font-semibold">
                     What kind of details should I include in my roommate profile?
@@ -37,7 +37,7 @@ const Faq = () => {
                 </div>
             </div>
 
-            <div className="collapse collapse-arrow bg-base-100 border border-base-300">
+            <div className="collapse collapse-arrow bg-base-100 border border-base-300 dark:border-white">
                 <input type="radio" name="my-accordion-2" />
                 <div className="collapse-title font-semibold">
                     Can I connect with someone to find a place together?
@@ -47,7 +47,7 @@ const Faq = () => {
                 </div>
             </div>
 
-            <div className="collapse collapse-arrow bg-base-100 border border-base-300">
+            <div className="collapse collapse-arrow bg-base-100 border border-base-300 dark:border-white">
                 <input type="radio" name="my-accordion-2" />
                 <div className="collapse-title font-semibold">
                     How do I stay safe while finding a roommate online?

@@ -1,24 +1,50 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from "../../assets/website-logo.png"
 import { AuthContext } from '../../Contexts/AuthContext';
+import { FiSun, FiMoon } from 'react-icons/fi';
 
 const Header = () => {
 
     const { user, SignOut } = use(AuthContext)
+    const [theme, setTheme] = useState('light');
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else if (systemPrefersDark) {
+            setTheme('dark');
+        }
+    }, []);
+
+    useEffect(() => {
+        const html = document.documentElement;
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    // Toggle theme handler
+    const toggleTheme = () => {
+        setTheme(theme === 'light' ? 'dark' : 'light');
+    };
+
+
     const links = <>
         <NavLink className={({ isActive }) =>
             isActive ? "underline text-blue-600" : "text-gray-600"
-        } to='/'><li>Home</li></NavLink>
+        } to='/'><li className='dark:text-white'>Home</li></NavLink>
         <NavLink className={({ isActive }) =>
             isActive ? "underline text-blue-600" : "text-gray-600"
-        } to="/findRoommate"><li>Add to Find Roommate</li></NavLink>
+        } to="/findRoommate"><li className='dark:text-white'>Add to Find Roommate</li></NavLink>
         <NavLink className={({ isActive }) =>
             isActive ? "underline text-blue-600" : "text-gray-600"
-        } to='/browseListing'><li>Browse Listing</li></NavLink>
+        } to='/browseListing'><li className='dark:text-white'>Browse Listing</li></NavLink>
         <NavLink className={({ isActive }) =>
             isActive ? "underline text-blue-600" : "text-gray-600"
-        } to="/myListings"><li>My Listings</li></NavLink>
+        } to="/myListings"><li className='dark:text-white'>My Listings</li></NavLink>
     </>
 
 
@@ -58,6 +84,24 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-3 mr-10">
+                <button
+                    onClick={toggleTheme}
+                    aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                    className=" p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                >
+                    {
+                        theme === 'dark' ? (
+                            <span className="text-yellow-300 text-xl">
+                                <FiSun />
+                            </span>
+                        ) : (
+                            <span className="text-gray-700 text-xl">
+                                <FiMoon />
+                            </span>
+                        )
+                    }
+                </button>
+
                 {
                     user ?
                         <div className="dropdown dropdown-hover mr-10">

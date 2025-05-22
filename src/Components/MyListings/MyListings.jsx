@@ -64,9 +64,9 @@ const MyListings = () => {
 
     return (
         <div className="overflow-x-auto my-10">
-            <table className="table table-zebra border-4">
+            <table className="table table-zebra border-2">
                 {/* head */}
-                <thead className='border-2'>
+                <thead className=''>
                     <tr>
                         <th className='text-xl font-bold'>Title</th>
                         <th className='text-xl font-bold'>Location</th>
