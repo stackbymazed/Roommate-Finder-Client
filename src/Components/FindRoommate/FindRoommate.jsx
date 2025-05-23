@@ -90,11 +90,11 @@ const FindRoommate = () => {
                     </fieldset>
                     <fieldset className="fieldset  rounded-box p-4">
                         <label className="label font-bold">Email </label>
-                        <input required type="text" name='email' value={user.email} className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter Email " />
+                        <input required type="text" name='email' value={user.email} readOnly className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter Email " />
                     </fieldset>
                     <fieldset className="fieldset  rounded-box p-4">
                         <label className="label font-bold">Name  </label>
-                        <input required type="text" name='name' value={user.displayName} className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter Name" />
+                        <input required type="text" name='name' value={user.displayName} readOnly className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter Name" />
                     </fieldset>
                 </div>
                 <fieldset className="fieldset w-full rounded-box p-4">
@@ -103,9 +103,9 @@ const FindRoommate = () => {
                 </fieldset>
                 <fieldset className="fieldset  rounded-box p-4">
                     <legend className="fieldset-legend font-bold dark:text-black">Your bio</legend>
-                    <textarea required className="textarea h-24 w-full dark:text-white bg-white border-gray-300" name='bio' placeholder="Enter the Description" ></textarea>
+                    <textarea required className="textarea h-24 w-full  bg-white dark:text-black border-gray-300" name='bio' placeholder="Enter the Description" ></textarea>
                 </fieldset>
-                <input type="submit" className='btn w-full bg-white border-gray-300' value="Add" />
+                <input type="submit" className='btn w-full bg-white dark:text-black border-gray-300' value="Add" />
             </form>
         </div>
     );

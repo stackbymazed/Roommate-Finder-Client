@@ -7,14 +7,14 @@ import { Link } from 'react-router';
 
 const BrowseListing = () => {
     const [allData, setAllData] = useState([])
-    useEffect(() => {
-        fetch("http://localhost:3000/roommatesAll")
-            .then(res => res.json())
-            .then(Data => {
-                // console.log(Data);
-                setAllData(Data)
-            })
-    }, [])
+   useEffect(()=>{
+    fetch("http://localhost:3000/roommatesAll")
+        .then(res => res.json())
+        .then(Data => {
+            // console.log(Data);
+            setAllData(Data)
+        })
+   },[])
     // console.log(allData);
     return (
         <div>
