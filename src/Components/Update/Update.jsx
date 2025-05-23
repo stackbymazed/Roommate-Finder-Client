@@ -38,7 +38,7 @@ const navigate = useNavigate()
             })
     }
     return (
-        <div className='p-16 bg-pink-100'>
+        <div className='p-16 bg-pink-50 dark:text-black'>
             <div className='text-center p-8'>
                 <h1 className='text-3xl'>Update Your Find RoomMate Post</h1>
             </div>

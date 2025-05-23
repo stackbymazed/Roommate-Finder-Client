@@ -63,15 +63,15 @@ const MyListings = () => {
 
 
     return (
-        <div className="overflow-x-auto my-10">
+        <div className="overflow-x-auto my-10 mx-3">
             <table className="table table-zebra border-2">
                 {/* head */}
                 <thead className=''>
                     <tr>
-                        <th className='text-xl font-bold'>Title</th>
+                        <th className='text-xl font-bold hidden lg:block'>Title</th>
                         <th className='text-xl font-bold'>Location</th>
                         <th className='text-xl font-bold'>Rent</th>
-                        <th className='text-xl font-bold'>Email</th>
+                        <th className='text-xl font-bold hidden lg:block'>Email</th>
                         <th className='text-xl font-bold'>Actions</th>
                     </tr>
                 </thead>
@@ -79,13 +79,23 @@ const MyListings = () => {
                     Post.map(data => <tbody key={data._id} className='border-2'>
                         {/* row 1 */}
                         <tr>
-                            <th>{data.title}</th>
+                            <th className=' hidden lg:block'>{data.title}</th>
                             <td>{data.location}</td>
                             <td>{data.rentAmount}</td>
-                            <td>{data.email}</td>
-                            <td className='gap-3'>
-                                <Link to={`/update/${data._id}`} ><button className='btn'>update</button></Link>
-                                <button className='btn' onClick={() => handleDelete(data._id)}>delete</button>
+                            <td className=' hidden lg:block'>{data.email}</td>
+                            <td className=''>
+                                <Link to={`/update/${data._id}`} >   
+                                 <button className="relative inline-block px-4 py-2 font-medium group">
+                                    <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                    <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                    <span className="relative text-black group-hover:text-white">Update</span>
+                                </button>
+                                </Link>
+                                 <button onClick={() => handleDelete(data._id)} className="relative inline-block px-4 py-2 font-medium group">
+                                    <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                    <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                    <span className="relative text-black group-hover:text-white">Delete .</span>
+                                </button>
                             </td>
                         </tr>
                     </tbody>)

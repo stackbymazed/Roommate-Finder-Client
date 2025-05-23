@@ -13,6 +13,9 @@ const FindRoommate = () => {
         const fromData = new FormData(from)
         const newFromData = Object.fromEntries(fromData.entries())
         console.log(newFromData);
+        const likeCount = 0
+        const newFromDataWithLike = {...newFromData,likeCount}
+        console.log(newFromDataWithLike);
 
 
         fetch("http://localhost:3000/roommates", {
@@ -20,7 +23,7 @@ const FindRoommate = () => {
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify(newFromData)
+            body: JSON.stringify(newFromDataWithLike)
         })
             .then(res => res.json())
             .then(data => {
@@ -49,15 +52,15 @@ const FindRoommate = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
                     <fieldset className="fieldset  rounded-box p-4">
                         <label className="label font-bold">Title </label>
-                        <input type="text" name='title' className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter the Title " />
+                        <input required type="text" name='title' className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter the Title " />
                     </fieldset>
                     <fieldset className="fieldset  rounded-box p-4">
                         <label className="label font-bold">Location</label>
-                        <input type="text" name='location' className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter your Location" />
+                        <input required type="text" name='location' className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter your Location" />
                     </fieldset>
                     <fieldset className="fieldset  rounded-box p-4">
                         <label className="label font-bold">Rent Amount</label>
-                        <input type="text" name='rentAmount' className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter your Rent Amount" />
+                        <input required type="text" name='rentAmount' className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter your Rent Amount" />
                     </fieldset>
                     <fieldset className="fieldset rounded-box p-4">
                         <label className="label font-bold">Room Type</label>
@@ -69,7 +72,7 @@ const FindRoommate = () => {
                     </fieldset>
                     <fieldset className="fieldset rounded-box p-4">
                         <label className="label font-bold">Lifestyle Preferences</label>
-                        <select defaultValue="Pick a color" name='lifestyle' className="select border pl-5  w-full bg-white border-gray-300 h-8">
+                        <select required defaultValue="Pick a color" name='lifestyle' className="select border pl-5  w-full bg-white border-gray-300 h-8">
                             <option disabled={true}>Lifestyle Preferences Type</option>
                             <option>Pets</option>
                             <option>Smoking</option>
@@ -79,7 +82,7 @@ const FindRoommate = () => {
                     </fieldset>
                     <fieldset className="fieldset rounded-box p-4">
                         <label className="label font-bold">Availability</label>
-                        <select defaultValue="Pick a color" name='availability' className="select border pl-5  w-full bg-white border-gray-300 h-8">
+                        <select required defaultValue="Pick a color" name='availability' className="select border pl-5  w-full bg-white border-gray-300 h-8">
                             <option disabled={true}>Select Availability</option>
                             <option>available</option>
                             <option>Not available</option>
@@ -87,22 +90,22 @@ const FindRoommate = () => {
                     </fieldset>
                     <fieldset className="fieldset  rounded-box p-4">
                         <label className="label font-bold">Email </label>
-                        <input type="text" name='email' value={user.email} className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter Email " />
+                        <input required type="text" name='email' value={user.email} className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter Email " />
                     </fieldset>
                     <fieldset className="fieldset  rounded-box p-4">
                         <label className="label font-bold">Name  </label>
-                        <input type="text" name='name' value={user.displayName} className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter Name" />
+                        <input required type="text" name='name' value={user.displayName} className="border pl-5 bg-white border-gray-300 h-8" placeholder="Enter Name" />
                     </fieldset>
                 </div>
                 <fieldset className="fieldset w-full rounded-box p-4">
                     <label className="label font-bold">Contact Info </label>
-                    <input type="text" name='photo' className="border bg-white pl-5 border-gray-300 h-8" placeholder="Enter Contact Info " />
+                    <input required type="text" name='photo' className="border bg-white pl-5 border-gray-300 h-8" placeholder="Enter Contact Info " />
                 </fieldset>
                 <fieldset className="fieldset  rounded-box p-4">
                     <legend className="fieldset-legend font-bold dark:text-black">Your bio</legend>
-                    <textarea className="textarea h-24 w-full dark:text-white" name='bio' placeholder="Enter the Description" ></textarea>
+                    <textarea required className="textarea h-24 w-full dark:text-white bg-white border-gray-300" name='bio' placeholder="Enter the Description" ></textarea>
                 </fieldset>
-                <input type="submit" className='btn w-full ' value="Add" />
+                <input type="submit" className='btn w-full bg-white border-gray-300' value="Add" />
             </form>
         </div>
     );
