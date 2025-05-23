@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 const BrowseListing = () => {
     const [allData, setAllData] = useState([])
    useEffect(()=>{
-    fetch("http://localhost:3000/roommatesAll")
+    fetch("https://roommate-finder-server-rho.vercel.app/roommatesAll")
         .then(res => res.json())
         .then(Data => {
             // console.log(Data);

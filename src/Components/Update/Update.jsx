@@ -14,7 +14,7 @@ const navigate = useNavigate()
         const newFromData = Object.fromEntries(fromData.entries())
         // console.log(newFromData);
 
-        fetch(`http://localhost:3000/roommates/${_id}`, {
+        fetch(`https://roommate-finder-server-rho.vercel.app/roommates/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

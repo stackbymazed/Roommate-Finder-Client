@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch("http://localhost:3000/roommates"),
+                loader: () => fetch("https://roommate-finder-server-rho.vercel.app/roommates"),
                 Component: Home,
             },
             {
@@ -49,14 +49,14 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/update/:id",
-                loader: ({params}) => fetch(`http://localhost:3000/roommates/${params.id}`),
+                loader: ({params}) => fetch(`https://roommate-finder-server-rho.vercel.app/roommates/${params.id}`),
                 element: <PrivateRoute>
                     <Update></Update>
                 </PrivateRoute>
             },
             {
                 path: "/roommates/:id",
-                loader: ({ params }) => fetch(`http://localhost:3000/roommates/${params.id}`),
+                loader: ({ params }) => fetch(`https://roommate-finder-server-rho.vercel.app/roommates/${params.id}`),
                 element: <PrivateRoute>
                     <PostDetails></PostDetails>
                 </PrivateRoute>

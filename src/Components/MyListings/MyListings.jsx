@@ -18,7 +18,7 @@ const MyListings = () => {
 
     useEffect(() => {
 
-        fetch('http://localhost:3000/roommatesAll')
+        fetch('https://roommate-finder-server-rho.vercel.app/roommatesAll')
             .then(res => res.json())
             .then(data => setUserPost(data))
 
@@ -39,7 +39,7 @@ const MyListings = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/roommates/${id}`, {
+                fetch(`https://roommate-finder-server-rho.vercel.app/roommates/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
