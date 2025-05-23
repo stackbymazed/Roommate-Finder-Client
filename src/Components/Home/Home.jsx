@@ -4,6 +4,7 @@ import Faq from '../Faq/Faq';
 import PostSection from '../PostSection/PostSection';
 import { useLoaderData } from 'react-router';
 import ServiceCulture from '../ServiceCulture/ServiceCulture';
+import Success from '../Success/Success';
 
 const Home = () => {
     const postData = useLoaderData()
@@ -13,6 +14,7 @@ const Home = () => {
             <Banner></Banner>
             <PostSection postData={postData}></PostSection>
             <ServiceCulture></ServiceCulture>
+            <Success></Success>
             <Faq></Faq>
         </div>
     );

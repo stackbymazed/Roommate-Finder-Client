@@ -3,38 +3,41 @@ import { FaHouseUser } from 'react-icons/fa';
 import { MdEventAvailable, MdLocationPin } from 'react-icons/md';
 import { TbHomeShare } from 'react-icons/tb';
 import { Link } from 'react-router';
+import { Slide } from "react-awesome-reveal";
 
 const SinglePostData = ({ singlePostData }) => {
-    const {availability,bio,location,rentAmount,room,title,_id} = singlePostData
+    const { availability, bio, location, rentAmount, room, title, _id } = singlePostData
 
     return (
-        <div className="card shadow-2xl my-5  bg-base-100 w-64 lg:w-96 border-2">
-            <div className="card-body">
-                <h2 className="card-title text-2xl">{title}</h2>
-                <div className='flex gap-3'>
-                    <FaHouseUser className='text-blue-600' size={20} />
-                    <p>{rentAmount}</p>
-                </div>
-                <div className='flex gap-3'>
-                    <MdLocationPin className='text-blue-600' size={20} />
-                    <p> {location}</p>
-                </div>
-                <div className='flex gap-3'>
-                    <TbHomeShare className='text-blue-400' size={20} />
-                    <p>{room}</p>
-                </div>
-                <div className='flex gap-3'>
-                    <MdEventAvailable className='text-green-600' size={20} />
-                    <p>{availability}</p>
-                </div>
-                <div >
-                    <p>{bio}</p>
-                </div>
-                <div className="card-actions justify-end">
-                    <Link to={`/roommates/${_id}`}><button className="btn btn-primary">See More...</button></Link>
+        <Slide triggerOnce>
+            <div className="card shadow-2xl my-5  bg-base-100 w-64 lg:w-96 border-2">
+                <div className="card-body">
+                    <h2 className="card-title text-2xl">{title}</h2>
+                    <div className='flex gap-3'>
+                        <FaHouseUser className='text-blue-600' size={20} />
+                        <p>{rentAmount}</p>
+                    </div>
+                    <div className='flex gap-3'>
+                        <MdLocationPin className='text-blue-600' size={20} />
+                        <p> {location}</p>
+                    </div>
+                    <div className='flex gap-3'>
+                        <TbHomeShare className='text-blue-400' size={20} />
+                        <p>{room}</p>
+                    </div>
+                    <div className='flex gap-3'>
+                        <MdEventAvailable className='text-green-600' size={20} />
+                        <p>{availability}</p>
+                    </div>
+                    <div >
+                        <p>{bio}</p>
+                    </div>
+                    <div className="card-actions justify-end">
+                        <Link to={`/roommates/${_id}`}><button className="btn btn-primary">See More...</button></Link>
+                    </div>
                 </div>
             </div>
-        </div>
+        </Slide>
     );
 };
 
