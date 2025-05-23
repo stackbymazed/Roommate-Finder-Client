@@ -8,14 +8,14 @@ const FindRoommate = () => {
 
     const handleAddData = e => {
         e.preventDefault()
-        console.log("hey mama");
+        // console.log("hey mama");
         const from = e.target;
         const fromData = new FormData(from)
         const newFromData = Object.fromEntries(fromData.entries())
-        console.log(newFromData);
+        // console.log(newFromData);
         const likeCount = 0
         const newFromDataWithLike = {...newFromData,likeCount}
-        console.log(newFromDataWithLike);
+        // console.log(newFromDataWithLike);
 
 
         fetch("http://localhost:3000/roommates", {
@@ -27,7 +27,7 @@ const FindRoommate = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log("after sent data db", data);
+                // console.log("after sent data db", data);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",

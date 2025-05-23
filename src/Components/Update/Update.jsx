@@ -12,7 +12,7 @@ const navigate = useNavigate()
         const from = e.target;
         const fromData = new FormData(from)
         const newFromData = Object.fromEntries(fromData.entries())
-        console.log(newFromData);
+        // console.log(newFromData);
 
         fetch(`http://localhost:3000/roommates/${_id}`, {
             method: "PUT",

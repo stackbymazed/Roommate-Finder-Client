@@ -7,7 +7,7 @@ const MyListings = () => {
     const { user } = use(AuthContext)
     const userEmail = user.email
     const [userPost, setUserPost] = useState([])
-    console.log(userPost);
+    // console.log(userPost);
     const [Post, setPost] = useState([])
     // useEffect(() => {
 
@@ -23,7 +23,7 @@ const MyListings = () => {
             .then(data => setUserPost(data))
 
         const newData = userPost.filter(user => user.email == userEmail)
-        console.log(newData);
+        // console.log(newData);
         setPost(newData)
 
     }, [userEmail, userPost])

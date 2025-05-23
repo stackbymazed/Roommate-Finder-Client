@@ -13,7 +13,7 @@ const LogIn = () => {
         const from = e.target
         const email = from.email.value;
         const password = from.password.value;
-        console.log(email, password);
+        // console.log(email, password);
 
 
         SignInUser(email, password)
@@ -27,7 +27,7 @@ const LogIn = () => {
             })
             .catch((error) => {
                 const errorMessage = error.message;
-                console.log(errorMessage);
+                // console.log(errorMessage);
             });
     }
 
@@ -40,7 +40,7 @@ const LogIn = () => {
                 navigate(`${location.state ? location?.state : "/" }`)
             }).catch((error) => {
                 const errorMessage = error.message;
-                console.log(errorMessage);
+                // console.log(errorMessage);
             });
     }
     return (

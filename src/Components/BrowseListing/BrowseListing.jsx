@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaHouseUser } from 'react-icons/fa';
 import { MdEventAvailable, MdLocationPin } from 'react-icons/md';
 import { TbHomeShare } from 'react-icons/tb';
@@ -6,47 +6,60 @@ import { Link } from 'react-router';
 
 
 const BrowseListing = () => {
-    const [allData,setAllData] = useState([])
-    fetch("http://localhost:3000/roommatesAll")
-    .then(res => res.json())
-    .then(Data => {
-        // console.log(Data);
-        setAllData(Data)
-    })
+    const [allData, setAllData] = useState([])
+    useEffect(() => {
+        fetch("http://localhost:3000/roommatesAll")
+            .then(res => res.json())
+            .then(Data => {
+                // console.log(Data);
+                setAllData(Data)
+            })
+    }, [])
     // console.log(allData);
     return (
         <div>
-            {
-                allData.map(data =>  <div key={data._id} className="card shadow-2xl my-auto  bg-base-100 w-64 lg:w-96 border-2">
-            <div className="card-body">
-                <h2 className="card-title text-2xl">{data.title}</h2>
-                <div className='flex gap-3'>
-                    <FaHouseUser className='text-blue-600' size={20} />
-                    <p>{data.rentAmount}</p>
-                </div>
-                <div className='flex gap-3'>
-                    <MdLocationPin className='text-blue-600' size={20} />
-                    <p> {data.location}</p>
-                </div>
-                <div className='flex gap-3'>
-                    <TbHomeShare className='text-blue-400' size={20} />
-                    <p>{data.room}</p>
-                </div>
-                <div className='flex gap-3'>
-                    <MdEventAvailable className='text-green-600' size={20} />
-                    <p>{data.availability}</p>
-                </div>
-                <div >
-                    <p>{data.bio}</p>
-                </div>
-                <div className="card-actions justify-end">
-                    <Link to={`/roommates/${data._id}`}><button className="btn btn-primary">See More...</button></Link>
-                </div>
+            <div className="overflow-x-auto">
+                <table className="table table-xs">
+                    <thead>
+                        <tr>
+                            <th className='w-1/6 text-xl hidden lg:flex'>Name</th>
+                            <th className='w-1/6 text-xl'>location</th>
+                            <th className='w-1/6 text-xl hidden lg:flex'>Email</th>
+                            <th className='w-1/6 text-xl hidden lg:inline'> Number</th>
+                            <th className='w-1/6 text-xl '>Rent</th>
+                            <th className='w-1/6 text-xl'>More</th>
+                        </tr>
+
+                    </thead>
+                    {
+                        allData.map((data) => <tbody key={data._id}>
+                            <tr>
+
+                                <td className='hidden lg:block'> {data.name}</td>
+                                <td>{data.location}</td>
+                                <td className='hidden lg:block'>{data.email}</td>
+                                <td className='hidden lg:block'>{data.photo}</td>
+                                <td>{data.rentAmount}</td>
+                                <td>
+                                    <Link to={`/roommates/${data._id}`}>
+                                        <button className="relative inline-block px-4 py-2 font-medium group">
+                                            <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                            <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                            <span className="relative text-black group-hover:text-white">See more</span>
+                                        </button>
+                                    </Link>
+                                </td>
+                            </tr>
+                        </tbody>)
+                    }
+                </table>
             </div>
-        </div>)
-            }
         </div>
     );
 };
 
 export default BrowseListing;
+
+
+
+

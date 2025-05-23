@@ -16,12 +16,12 @@ const SignUp = () => {
         const photo = from.photo.value;
         const email = from.email.value;
         const password = from.password.value;
-        console.log(name, photo, email, password);
+        // console.log(name, photo, email, password);
 
 
         SignUpUser(email, password)
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 const user = result.user
                 updateUser({ displayName: name, photoURL: photo })
                     .then(() => {
@@ -33,12 +33,12 @@ const SignUp = () => {
                     }).catch((error) => {
                         // An error occurred
                         // ...
-                        console.log(error);
+                        // console.log(error);
                         setUser(user)
                     });
             })
             .catch(error => {
-                console.log(error);
+                // console.log(error);
             })
 
     }
@@ -55,7 +55,7 @@ const SignUp = () => {
                 // Navigate("/")
             }).catch((error) => {
                 const errorMessage = error.message;
-                console.log(errorMessage);
+                // console.log(errorMessage);
             });
     }
     return (
