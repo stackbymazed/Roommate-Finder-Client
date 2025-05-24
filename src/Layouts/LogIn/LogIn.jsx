@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext';
+import {toast} from 'react-toastify';
 
 const LogIn = () => {
 
@@ -22,12 +23,14 @@ const LogIn = () => {
                 const user = userCredential.user;
                 setUser(user)
                 from.reset()
-                navigate(`${location.state ? location?.state : "/" }`)
+                navigate(`${location.state ? location?.state : "/"}`)
                 // ...
+                toast('LogIn successfully');
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 // console.log(errorMessage);
+                toast(`${errorMessage}`);
             });
     }
 
@@ -37,10 +40,12 @@ const LogIn = () => {
                 const user = result.user;
                 setUser(user)
                 // alert("google SIgn log in successfully")
-                navigate(`${location.state ? location?.state : "/" }`)
+                navigate(`${location.state ? location?.state : "/"}`)
+                toast('LogIn successfully');
             }).catch((error) => {
                 const errorMessage = error.message;
                 // console.log(errorMessage);
+                toast(`${errorMessage}`);
             });
     }
     return (

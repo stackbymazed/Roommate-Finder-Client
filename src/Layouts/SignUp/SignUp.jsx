@@ -1,6 +1,7 @@
 import React, { use } from 'react';
-import { Link, Navigate, useLocation, useNavigate} from 'react-router';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext';
+import {toast} from 'react-toastify';
 
 const SignUp = () => {
 
@@ -26,7 +27,7 @@ const SignUp = () => {
                 updateUser({ displayName: name, photoURL: photo })
                     .then(() => {
                         setUser({ ...user, displayName: name, photoURL: photo })
-                        alert("gmail password signin successfully")
+                        // alert("gmail password signin successfully")
                         // Navigate("/login")
                         from.reset()
                         Navigate(`${location.state ? location.state : "/login"}`)
@@ -35,10 +36,12 @@ const SignUp = () => {
                         // ...
                         // console.log(error);
                         setUser(user)
+                        // toast(`${error}`);
                     });
             })
             .catch(error => {
                 // console.log(error);
+                toast(`${errorMessage}`);
             })
 
     }
@@ -56,6 +59,7 @@ const SignUp = () => {
             }).catch((error) => {
                 const errorMessage = error.message;
                 // console.log(errorMessage);
+                toast(`${errorMessage}`);
             });
     }
     return (
