@@ -10,6 +10,8 @@ import Error from "../Components/Error/Error";
 import PrivateRoute from "../Contexts/PrivateRoute";
 import PostDetails from "../Components/PostDetails/PostDetails";
 import Update from "../Components/Update/Update";
+import AboutUs from "../Layouts/AboutUs/AboutUs";
+import ContactUs from "../Layouts/ContactUs/ContactUs";
 
 
 export const router = createBrowserRouter([
@@ -42,6 +44,14 @@ export const router = createBrowserRouter([
             {
                 path: "/signup",
                 Component: SignUp
+            },
+            {
+                path: "/aboutUs",
+                Component: AboutUs
+            },
+            {
+                path: "/contactUs",
+                Component: ContactUs
             },
             {
                 path: "/login",

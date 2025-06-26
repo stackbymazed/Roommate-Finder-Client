@@ -1,79 +1,109 @@
-import React, { use } from 'react';
+import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const LogIn = () => {
+    const { SignInUser, setUser, SignUpGoogle } = React.useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const { SignInUser, setUser, SignUpGoogle } = use(AuthContext)
-    const location = useLocation()
-    const navigate = useNavigate()
-    const handleLogIn = e => {
-        e.preventDefault()
-        e.preventDefault()
-        const from = e.target
-        const email = from.email.value;
-        const password = from.password.value;
-        // console.log(email, password);
-
+    const handleLogIn = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
 
         SignInUser(email, password)
             .then((userCredential) => {
-                // Signed in 
                 const user = userCredential.user;
-                setUser(user)
-                from.reset()
-                navigate(`${location.state ? location?.state : "/"}`)
-                // ...
-                toast('LogIn successfully');
+                setUser(user);
+                form.reset();
+                navigate(location.state ? location.state : "/");
+                toast.success('Logged in successfully!');
             })
             .catch((error) => {
-                const errorMessage = error.message;
-                // console.log(errorMessage);
-                toast(`${errorMessage}`);
+                toast.error(error.message);
             });
-    }
+    };
 
     const handleGoogleSignin = () => {
         SignUpGoogle()
             .then((result) => {
                 const user = result.user;
-                setUser(user)
-                // alert("google SIgn log in successfully")
-                navigate(`${location.state ? location?.state : "/"}`)
-                toast('LogIn successfully');
-            }).catch((error) => {
-                const errorMessage = error.message;
-                // console.log(errorMessage);
-                toast(`${errorMessage}`);
+                setUser(user);
+                navigate(location.state ? location.state : "/");
+                toast.success('Logged in with Google!');
+            })
+            .catch((error) => {
+                toast.error(error.message);
             });
-    }
+    };
+
     return (
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto my-10">
-            <div className="card-body">
-                <h1 className="text-3xl font-bold mx-auto">LogIn</h1>
-                <form onSubmit={handleLogIn} className="fieldset">
-                    <label className="label">Email</label>
-                    <input type="email" className="input" name='email' placeholder="Email" />
-                    <label className="label">Password</label>
-                    <input
-                        type="password"
-                        className="input"
-                        name='password'
-                        required
-                        placeholder="Password"
-                        minLength="6"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-                        title="Must be more than 6 characters, including number, lowercase letter, uppercase letter" />
-                    <input className="btn btn-neutral mt-4" type="submit" value="LogIn" />
-                    <button className="btn bg-white text-black border-[#e5e5e5] my-3" onClick={handleGoogleSignin}>
-                        <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-                        Login with Google
+        <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+            {/* Animated Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-100 via-pink-100 to-green-100 animate-gradient-x bg-[length:300%_300%] z-0"></div>
+
+            <div className="w-full max-w-md p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl z-10">
+                <h2 className="text-3xl font-bold text-center text-blue-700 dark:text-white mb-6">Log In</h2>
+
+                <form onSubmit={handleLogIn} className="space-y-4">
+                    <div>
+                        <label className="block text-gray-700 dark:text-gray-200 mb-1">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            required
+                            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                            placeholder="Enter your email"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-gray-700 dark:text-gray-200 mb-1">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            required
+                            minLength="6"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                            title="At least 6 characters with a number, uppercase and lowercase letter"
+                            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                            placeholder="Enter your password"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-semibold transition duration-300"
+                    >
+                        Log In
                     </button>
-                    <p className='mx-auto'>Don't have an account ! please <Link className='underline text-green-600' to="/signup">SignUp</Link></p>
                 </form>
+
+                <div className="my-4 text-center text-gray-600 dark:text-gray-400">OR</div>
+
+                <button
+                    onClick={handleGoogleSignin}
+                    className="w-full flex items-center justify-center gap-3 bg-white text-gray-800 border border-gray-300 dark:border-gray-700 rounded-md py-2 hover:bg-gray-100 transition"
+                >
+                    <svg width="20" height="20" viewBox="0 0 48 48">
+                        <path fill="#EA4335" d="M24 9.5c3.13 0 5.53 1.3 7.2 2.4l5.3-5.3C33.07 3.7 28.8 2 24 2 14.3 2 6.2 8.7 3.4 17.2l6.8 5.3C11.6 15 17.2 9.5 24 9.5z" />
+                        <path fill="#34A853" d="M24 44c6.3 0 11.6-2.1 15.4-5.6l-6.8-5.6c-2 1.3-4.6 2-8.6 2-6.8 0-12.5-4.6-14.6-10.8l-7 5.4C6.1 38.2 14.2 44 24 44z" />
+                        <path fill="#4A90E2" d="M43.6 20H24v8.5h11.2q-1.5 4-5.2 6.5t-11.2 2q-6.8 0-14.6-10.8l-7 5.4C6.1 38.2 14.2 44 24 44c8.8 0 16.1-5.8 18.3-13.6.5-1.8.7-3.8.7-5.8 0-.6 0-1.2-.1-1.6z" />
+                    </svg>
+                    Log in with Google
+                </button>
+
+                <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
+                    Don’t have an account?{' '}
+                    <Link to="/signup" className="text-blue-600 hover:underline font-semibold">
+                        Sign Up
+                    </Link>
+                </p>
             </div>
-        </div>
+        </section>
     );
 };
 

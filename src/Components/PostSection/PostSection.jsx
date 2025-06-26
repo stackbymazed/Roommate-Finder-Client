@@ -3,7 +3,7 @@ import SinglePostData from '../SinglePostData/SinglePostData';
 
 const PostSection = ({ postData }) => {
     return (
-        <div className=' space-y-5 bg-base-300 rounded-3xl my-10 py-10'>
+        <div className='bg-gradient-to-br from-blue-100 via-white to-blue-50 dark:from-gray-900 dark:via-black dark:to-gray-800 min-h-screen py-10 px-4'>
             <h1 className='lg:text-2xl text-xl mx-auto font-bold text-center my-3 text-blue-800 dark:text-white'>
                 Find Your Ideal Roommate
             </h1>

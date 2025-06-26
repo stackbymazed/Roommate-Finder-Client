@@ -1,96 +1,76 @@
 import React from 'react';
 import { Link } from 'react-router';
-import image1 from "../../assets//images (10).jpg"
-import image2 from "../../assets/download (9).jpg"
-import image3 from "../../assets/images (11).jpg"
-import image4 from "../../assets/images (12).jpg"
+import image1 from '../../assets/images (10).jpg';
+import image2 from '../../assets/download (9).jpg';
+import image3 from '../../assets/images (11).jpg';
+import image4 from '../../assets/images (12).jpg';
 import { Typewriter } from 'react-simple-typewriter';
-import { Fade ,Slide} from "react-awesome-reveal";
+import { Fade, Slide } from 'react-awesome-reveal';
 
 const Banner = () => {
+  return (
+    <section className="border-2 border-gray-100 dark:border-gray-700 rounded-3xl my-5 bg-gray-50 dark:bg-gray-900 transition duration-300">
+      <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center p-6 lg:p-10">
+        {/* Text Section */}
+        <div className="flex flex-col justify-center text-center lg:text-left max-w-xl">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-gray-800 dark:text-white">
+            Find Your{' '}
+            <span className="text-blue-500">
+              <Typewriter
+                words={['Ideal', 'Best', 'Friendly', 'Good']}
+                loop={10000}
+                cursor
+                cursorStyle="_"
+                typeSpeed={100}
+                deleteSpeed={100}
+                delaySpeed={1000}
+              />
+              {' '}Roommate
+            </span>
+          </h1>
 
-    return (
-        <section className="border-2 border-gray-100 rounded-3xl my-5 bg-gray-50">
-            <div className="container flex flex-col justify-center p-6 mx-auto sm:py-6 lg:py-6 lg:flex-row lg:justify-between">
-                {/* Text Section */}
-                <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-none dark:text-black">
-                        Find Your <span className="dark:text-violet-600">
-                            <Typewriter words={['Ideal', 'Best', 'Friendly', 'Good']}
-                                loop={10000}
-                                cursor
-                                cursorStyle='_'
-                                typeSpeed={100}
-                                deleteSpeed={100}
-                                delaySpeed={1000}></Typewriter>
-                            Roommate</span>
-                    </h1>
-                    <Slide triggerOnce><Fade><p className="mt-6 mb-8 text-lg sm:mb-12 dark:text-black">
+          <Slide triggerOnce>
+            <Fade>
+              <p className="mt-6 mb-8 text-base sm:text-lg text-gray-700 dark:text-gray-300">
+                Discover compatible roommates based on preferences, lifestyle, and location.
+                Make shared living easy, safe, and affordable—start your roommate journey today.
+                <br className="hidden md:inline lg:hidden" />
+                No more waiting in line. Pay anytime, from anywhere.
+              </p>
+            </Fade>
+          </Slide>
 
+          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 gap-3 sm:gap-0">
+            <Link to="/findRoommate">
+              <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition duration-300">
+                Find Now
+              </button>
+            </Link>
+            <Link to="/login">
+              <button className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-2 rounded-lg transition duration-300">
+                Explore Features
+              </button>
+            </Link>
+          </div>
+        </div>
 
-                        Discover compatible roommates based on preferences, lifestyle, and location.Make shared living easy, safe, and affordable—start your roommate journey today.
-                        <br className="hidden md:inline lg:hidden" />
-                        No more waiting in line. Pay anytime, from anywhere.
-                    </p>  </Fade></Slide>
-                    <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                        <Link to="/findRoommate" className="relative inline-block px-4 py-2 font-medium group">
-                            <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                            <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                            <span className="relative text-black group-hover:text-white"> Find Now</span>
-                        </Link>
-
-                        <a className="relative inline-block px-4 py-2 font-medium group">
-                            <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                            <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                            <span className="relative text-black group-hover:text-white">Explore Features</span>
-                        </a>
-                    </div>
+        {/* Image Section */}
+        <div className="w-full max-w-2xl mt-10 lg:mt-0">
+          <div className="carousel w-full rounded-xl overflow-hidden border dark:border-gray-700">
+            {[image1, image2, image3, image4].map((img, index) => (
+              <div key={index} id={`slide${index + 1}`} className="carousel-item relative w-full">
+                <img src={img} className="w-full h-[300px] object-cover" alt={`Roommate ${index + 1}`} />
+                <div className="absolute inset-y-1/2 left-0 right-0 flex justify-between px-5 text-2xl text-black dark:text-white">
+                  <a href={`#slide${(index + 3) % 4 + 1}`}>❮</a>
+                  <a href={`#slide${(index + 1) % 4 + 1}`}>❯</a>
                 </div>
-
-                {/* Image Section */}
-                <div className="flex items-center  justify-center lg:p-30 mt-8 lg:mt-0 lg:w-[700px]  lg:h-[400px] ">
-                    <div className="carousel w-full ">
-                        <div id="slide1" className="carousel-item relative w-full">
-                            <img
-                                src={image1}
-                                className=" h-[300px] rounded-xl border-2" />
-                            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                                <a href="#slide4" className="dark:text-black">❮</a>
-                                <a href="#slide2" className="dark:text-black">❯</a>
-                            </div>
-                        </div>
-                        <div id="slide2" className="carousel-item relative w-full">
-                            <img
-                                src={image2}
-                                className=" h-[300px] rounded-xl border-2" />
-                            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                                <a href="#slide1" className="dark:text-black">❮</a>
-                                <a href="#slide3" className="dark:text-black">❯</a>
-                            </div>
-                        </div>
-                        <div id="slide3" className="carousel-item relative w-full">
-                            <img
-                                src={image3}
-                                className=" h-[300px] rounded-xl border-2" />
-                            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                                <a href="#slide2" className="dark:text-black">❮</a>
-                                <a href="#slide4" className="dark:text-black">❯</a>
-                            </div>
-                        </div>
-                        <div id="slide4" className="carousel-item relative w-full">
-                            <img
-                                src={image4}
-                                className=" h-[300px] rounded-xl border-2" />
-                            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                                <a href="#slide3" className="dark:text-black">❮</a>
-                                <a href="#slide1" className="dark:text-black">❯</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section >
-    );
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Banner;

@@ -2,31 +2,26 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import Loader from '../../Loading/Loader';
 
 const MyListings = () => {
-    const { user } = use(AuthContext)
-    const userEmail = user.email
-    const [userPost, setUserPost] = useState([])
-    // console.log(userPost);
-    const [Post, setPost] = useState([])
-    // useEffect(() => {
+    const { user } = use(AuthContext);
+    const userEmail = user.email;
 
-
-
-    // }, [])
-
+    const [userPost, setUserPost] = useState([]);
+    const [Post, setPost] = useState([]);
+    const [dataLoading, setDataLoading] = useState(true)
 
     useEffect(() => {
-
         fetch('https://roommate-finder-server-rho.vercel.app/roommatesAll')
             .then(res => res.json())
-            .then(data => setUserPost(data))
-
-        const newData = userPost.filter(user => user.email == userEmail)
-        // console.log(newData);
-        setPost(newData)
-
-    }, [userEmail, userPost])
+            .then(data => {
+                setUserPost(data);
+                const newData = data.filter(user => user.email === userEmail);
+                setPost(newData);
+                setDataLoading(false)
+            });
+    }, [userEmail]);
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -48,60 +43,67 @@ const MyListings = () => {
                             Swal.fire({
                                 position: "top-end",
                                 icon: "success",
-                                title: "Your work has been saved",
+                                title: "Deleted successfully",
                                 showConfirmButton: false,
                                 timer: 1500
                             });
                             const remainingPost = Post.filter(singlePost => singlePost._id !== id);
-                            setPost(remainingPost)
+                            setPost(remainingPost);
                         }
-                    })
+                    });
             }
         });
-
+    };
+    if (dataLoading) {
+        return <Loader></Loader>
     }
 
-
     return (
-        <div className="overflow-x-auto my-10 mx-3">
-            <table className="table table-zebra border-2">
-                {/* head */}
-                <thead className=''>
-                    <tr>
-                        <th className='text-xl font-bold hidden lg:block'>Title</th>
-                        <th className='text-xl font-bold'>Location</th>
-                        <th className='text-xl font-bold'>Rent</th>
-                        <th className='text-xl font-bold hidden lg:block'>Email</th>
-                        <th className='text-xl font-bold'>Actions</th>
-                    </tr>
-                </thead>
-                {
-                    Post.map(data => <tbody key={data._id} className='border-2'>
-                        {/* row 1 */}
-                        <tr>
-                            <th className=' hidden lg:block'>{data.title}</th>
-                            <td>{data.location}</td>
-                            <td>{data.rentAmount}</td>
-                            <td className=' hidden lg:block'>{data.email}</td>
-                            <td className=''>
-                                <Link to={`/update/${data._id}`} >   
-                                 <button className="relative inline-block px-4 py-2 font-medium group">
-                                    <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                    <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                    <span className="relative text-black group-hover:text-white">Update</span>
-                                </button>
-                                </Link>
-                                 <button onClick={() => handleDelete(data._id)} className="relative inline-block px-4 py-2 font-medium group">
-                                    <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                    <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                    <span className="relative text-black group-hover:text-white">Delete .</span>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>)
-                }
+        <div className="min-h-screen bg-gradient-to-br from-gray-100 to-blue-200 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 py-12 px-4">
+            <div className="max-w-6xl mx-auto bg-white dark:bg-gray-900 rounded-xl shadow-xl overflow-hidden p-6">
+                <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">My Listings</h2>
 
-            </table>
+                {Post.length === 0 ? (
+                    <div className="text-center text-gray-600 dark:text-gray-400 text-lg py-16">
+                        You haven’t created any listings yet.
+                    </div>
+                ) : (
+                    <div className="overflow-x-auto">
+                        <table className="table w-full border border-gray-200 dark:border-gray-700">
+                            <thead className="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+                                <tr>
+                                    <th className="hidden lg:table-cell px-4 py-2 text-left">Title</th>
+                                    <th className="px-4 py-2 text-left">Location</th>
+                                    <th className="px-4 py-2 text-left">Rent</th>
+                                    <th className="hidden lg:table-cell px-4 py-2 text-left">Email</th>
+                                    <th className="px-4 py-2 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Post.map(data => (
+                                    <tr key={data._id} className="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                                        <td className="hidden lg:table-cell px-4 py-2">{data.title}</td>
+                                        <td className="px-4 py-2">{data.location}</td>
+                                        <td className="px-4 py-2">{data.rentAmount}</td>
+                                        <td className="hidden lg:table-cell px-4 py-2">{data.email}</td>
+                                        <td className="px-4 py-2 space-x-2">
+                                            <Link to={`/update/${data._id}`}>
+                                                <button className="btn btn-sm bg-blue-600 text-white hover:bg-blue-700 rounded">Update</button>
+                                            </Link>
+                                            <button
+                                                onClick={() => handleDelete(data._id)}
+                                                className="btn btn-sm bg-red-600 text-white hover:bg-red-700 rounded"
+                                            >
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

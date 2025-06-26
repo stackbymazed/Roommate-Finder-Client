@@ -5,18 +5,25 @@ import PostSection from '../PostSection/PostSection';
 import { useLoaderData } from 'react-router';
 import ServiceCulture from '../ServiceCulture/ServiceCulture';
 import Success from '../Success/Success';
+import PromotionalOffer from '../HomeLayouts/PromotionalOffer';
+import TestimonialSection from '../HomeLayouts/TestimonialSection';
+import NewsletterSubscription from '../HomeLayouts/NewsletterSubscription';
 
 const Home = () => {
     const postData = useLoaderData()
 
     return (
         <div>
-            <Banner></Banner>
-            <PostSection postData={postData}></PostSection>
-            <ServiceCulture></ServiceCulture>
-            <Success></Success>
-            <Faq></Faq>
+            <Banner />               
+            <PromotionalOffer />    
+            <Success />           
+            <PostSection postData={postData} />
+            <ServiceCulture />    
+            <TestimonialSection />  
+            <NewsletterSubscription />
+            <Faq />   
         </div>
+
     );
 };
 
