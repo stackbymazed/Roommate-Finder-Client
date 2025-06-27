@@ -12,6 +12,8 @@ import PostDetails from "../Components/PostDetails/PostDetails";
 import Update from "../Components/Update/Update";
 import AboutUs from "../Layouts/AboutUs/AboutUs";
 import ContactUs from "../Layouts/ContactUs/ContactUs";
+import DashboardLayout from "../Layouts/Dashboard/DasboardLayout/DashboardLayout";
+import Dashboard from "../Layouts/Dashboard/Dashboard";
 
 
 export const router = createBrowserRouter([
@@ -59,7 +61,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/update/:id",
-                loader: ({params}) => fetch(`https://roommate-finder-server-rho.vercel.app/roommates/${params.id}`),
+                loader: ({ params }) => fetch(`https://roommate-finder-server-rho.vercel.app/roommates/${params.id}`),
                 element: <PrivateRoute>
                     <Update></Update>
                 </PrivateRoute>
@@ -73,4 +75,22 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: "/dashboard",
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                index:true,
+                Component: Dashboard
+            },
+            {
+                path: '/dashboard/myPost',
+                Component: MyListings
+            },
+            {
+                path: '/dashboard/post',
+                Component: FindRoommate
+            }
+        ]
+    }
 ]);

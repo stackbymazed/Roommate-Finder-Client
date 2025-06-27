@@ -34,20 +34,23 @@ const Header = () => {
             <NavLink to="/" className={({ isActive }) => isActive ? 'text-blue-500 underline' : 'text-gray-700 dark:text-white'}>
                 <li>Home</li>
             </NavLink>
-            <NavLink to="/findRoommate" className={({ isActive }) => isActive ? 'text-blue-500 underline' : 'text-gray-700 dark:text-white'}>
+            {/* <NavLink to="/findRoommate" className={({ isActive }) => isActive ? 'text-blue-500 underline' : 'text-gray-700 dark:text-white'}>
                 <li>Add to Find Roommate</li>
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/browseListing" className={({ isActive }) => isActive ? 'text-blue-500 underline' : 'text-gray-700 dark:text-white'}>
                 <li>Browse Listing</li>
             </NavLink>
-            <NavLink to="/myListings" className={({ isActive }) => isActive ? 'text-blue-500 underline' : 'text-gray-700 dark:text-white'}>
+            {/* <NavLink to="/myListings" className={({ isActive }) => isActive ? 'text-blue-500 underline' : 'text-gray-700 dark:text-white'}>
                 <li>My Listings</li>
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/aboutUs" className={({ isActive }) => isActive ? 'text-blue-500 underline' : 'text-gray-700 dark:text-white'}>
                 <li>About Us</li>
             </NavLink>
             <NavLink to="/contactUs" className={({ isActive }) => isActive ? 'text-blue-500 underline' : 'text-gray-700 dark:text-white'}>
                 <li>Contact Us</li>
+            </NavLink>
+            <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'text-blue-500 underline' : 'text-gray-700 dark:text-white'}>
+                <li>Dashboard</li>
             </NavLink>
         </>
     );
@@ -120,11 +123,11 @@ const Header = () => {
 
                         <ul
                             tabIndex={0}
-                            className="dropdown-content menu shadow rounded-box w-44 p-2 bg-white dark:bg-gray-800 absolute right-0 mt-2 z-50"
+                            className="dropdown-content menu shadow rounded-box w-44 p-2 bg-black dark:bg-gray-800 absolute right-0 mt-2 z-50"
                         >
-                            <li className="font-bold">{user?.displayName}</li>
+                            <li className="font-bold ">{user?.displayName}</li>
                             <li>
-                                <button onClick={handleLogOut} className="text-left text-sm hover:text-red-500">
+                                <button onClick={handleLogOut} className="text-left text-sm hover:text-red-500 hover:bg-white">
                                     Logout
                                 </button>
                             </li>

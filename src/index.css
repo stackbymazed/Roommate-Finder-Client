@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@import "leaflet/dist/leaflet.css";
+
 
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
