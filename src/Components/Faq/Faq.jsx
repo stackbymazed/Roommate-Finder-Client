@@ -5,22 +5,22 @@ const Faq = () => {
         {
             question: 'How do I find a compatible roommate?',
             answer:
-                'Create a profile, set your preferences (budget, lifestyle, location), and we’ll show you compatible roommates based on your criteria.',
+                'Create a profile set your preferences (budget, lifestyle, location), and we’ll show you compatible roommates based on your criteria.',
         },
         {
-            question: 'Can I post my own room or apartment?',
+            question: 'Can I post my own room or apartment? ',
             answer:
                 'Yes! You can list your available room or apartment with photos, rent details, and a description. Others can contact you directly.',
         },
         {
-            question: 'What should I include in my roommate profile?',
+            question: 'What should I include in my roommate profile? ',
             answer:
                 'Mention your routine, cleanliness, smoking habits, pet-friendliness, social habits, and ideal roommate type for better matching.',
         },
         {
-            question: 'Can I find someone to search for a place together?',
+            question: ' Can I find someone to search for a place together?',
             answer:
-                'Yes. You can connect with others who haven’t found a place yet and team up to find an apartment based on shared needs.',
+                ' Yes. You can connect with others who haven’t found a place yet and team up to find an apartment based on shared needs.',
         },
         {
             question: 'How do I stay safe while finding a roommate online?',

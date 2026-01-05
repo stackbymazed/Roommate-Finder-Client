@@ -9,7 +9,6 @@ const BrowseListing = () => {
     const [allData, setAllData] = useState([]);
     const [dataLoading, setDataLoading] = useState(true)
 
-
     useEffect(() => {
         fetch("https://roommate-finder-server-rho.vercel.app/roommatesAll")
             .then(res => res.json())
