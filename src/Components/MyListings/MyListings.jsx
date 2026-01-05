@@ -6,6 +6,7 @@ import Loader from '../../Loading/Loader';
 
 const MyListings = () => {
     const { user } = use(AuthContext);
+
     const userEmail = user.email;
 
     const [userPost, setUserPost] = useState([]);
@@ -25,13 +26,13 @@ const MyListings = () => {
 
     const handleDelete = (id) => {
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
+            title: "Are you sure? ",
+            text: "You won't be able to revert this! ",
+            icon: "warning ",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, delete it! "
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`https://roommate-finder-server-rho.vercel.app/roommates/${id}`, {
