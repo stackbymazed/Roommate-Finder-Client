@@ -74,10 +74,10 @@ const MyListings = () => {
                             <thead className="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
                                 <tr>
                                     <th className="hidden lg:table-cell px-4 py-2 text-left">Title</th>
-                                    <th className="px-4 py-2 text-left">Location </th>
-                                    <th className="px-4 py-2 text-left">Rent </th>
-                                    <th className="hidden lg:table-cell px-4 py-2 text-left">Email </th>
-                                    <th className="px-4 py-2 text-left">Actions </th>
+                                    <th className="px-4 py-2 text-left">Location</th>
+                                    <th className="px-4 py-2 text-left">Rent</th>
+                                    <th className="hidden lg:table-cell px-4 py-2 text-left">Email</th>
+                                    <th className="px-4 py-2 text-left">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
